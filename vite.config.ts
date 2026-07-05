@@ -10,7 +10,7 @@ export default defineConfig(({ command }) => ({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons/*.png'],
+      includeAssets: ['favicon.svg', 'icons/*.png', 'og-image.png'],
       manifest: {
         name: 'PatapataClock',
         short_name: 'PatapataClock',
