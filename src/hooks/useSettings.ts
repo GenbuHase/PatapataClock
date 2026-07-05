@@ -11,7 +11,7 @@ export interface Settings {
 const STORAGE_KEY = 'patapata-clock-settings'
 
 const defaultSettings: Settings = {
-  showSeconds: false,
+  showSeconds: true,
   format24h: true,
   themeId: 'keikyu',
 }
