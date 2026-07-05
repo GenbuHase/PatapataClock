@@ -23,9 +23,7 @@ export function FlipDigit({ value, theme, size = 'lg' }: FlipDigitProps) {
 
   const handleAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) return
-    if (isFlipping) {
-      onFlipEnd()
-    }
+    onFlipEnd()
   }
 
   return (
@@ -38,7 +36,7 @@ export function FlipDigit({ value, theme, size = 'lg' }: FlipDigitProps) {
         </div>
         <div className={`${styles.half} ${styles.halfBottom} ${styles.staticBottom}`}>
           <span className={styles.number} aria-hidden="true">
-            {isFlipping ? next : value}
+            {isFlipping ? current : value}
           </span>
         </div>
 
@@ -46,7 +44,6 @@ export function FlipDigit({ value, theme, size = 'lg' }: FlipDigitProps) {
           <>
             <div
               className={`${styles.half} ${styles.halfTop} ${styles.flipTop} ${styles.flipTopActive}`}
-              onAnimationEnd={handleAnimationEnd}
             >
               <span className={styles.number} aria-hidden="true">
                 {current}
@@ -54,6 +51,7 @@ export function FlipDigit({ value, theme, size = 'lg' }: FlipDigitProps) {
             </div>
             <div
               className={`${styles.half} ${styles.halfBottom} ${styles.flipBottom} ${styles.flipBottomActive}`}
+              onAnimationEnd={handleAnimationEnd}
             >
               <span className={styles.number} aria-hidden="true">
                 {next}

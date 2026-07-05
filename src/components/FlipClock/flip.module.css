@@ -52,6 +52,7 @@
   height: 50%;
   overflow: hidden;
   backface-visibility: hidden;
+  background: var(--flap-bg);
 }
 
 .halfTop {
@@ -82,18 +83,26 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: calc(var(--digit-height, 5rem) * 2);
+  height: 200%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.halfTop .number {
+.staticTop .number {
+  top: 0;
+}
+
+.staticBottom .number {
   bottom: 0;
 }
 
-.halfBottom .number {
+.flipTop .number {
   top: 0;
+}
+
+.flipBottom .number {
+  bottom: 0;
 }
 
 .staticTop,
@@ -105,6 +114,15 @@
 .flipBottom {
   z-index: 2;
   transform-style: preserve-3d;
+}
+
+.flipTop {
+  z-index: 3;
+  transform: rotateX(0deg);
+}
+
+.flipBottom {
+  transform: rotateX(90deg);
 }
 
 .flipTopActive {
