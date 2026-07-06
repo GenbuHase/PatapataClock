@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { ClockTime } from '../../hooks/useClock'
 import type { ClockTheme } from '../../themes/keikyu'
-import { FlipDigit } from './FlipDigit'
+import { FlipPair } from './FlipPair'
 import { FlipSeparator } from './FlipSeparator'
 import styles from './flip.module.css'
 
@@ -25,23 +25,20 @@ export function FlipClock({
   return (
     <div className={clockClass} role="timer" aria-live="polite" aria-atomic="true">
       <div className={styles.group}>
-        <FlipDigit value={time.hours[0]!} theme={theme} size={size} />
-        <FlipDigit value={time.hours[1]!} theme={theme} size={size} />
+        <FlipPair value={time.hours} theme={theme} size={size} />
       </div>
 
       <FlipSeparator theme={theme} />
 
       <div className={styles.group}>
-        <FlipDigit value={time.minutes[0]!} theme={theme} size={size} />
-        <FlipDigit value={time.minutes[1]!} theme={theme} size={size} />
+        <FlipPair value={time.minutes} theme={theme} size={size} />
       </div>
 
       {showSeconds && (
         <>
           <FlipSeparator theme={theme} />
           <div className={styles.group}>
-            <FlipDigit value={time.seconds[0]!} theme={theme} size={size} />
-            <FlipDigit value={time.seconds[1]!} theme={theme} size={size} />
+            <FlipPair value={time.seconds} theme={theme} size={size} />
           </div>
         </>
       )}

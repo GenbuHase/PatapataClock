@@ -20,7 +20,9 @@
   position: relative;
   width: var(--digit-width, 3.5rem);
   height: var(--digit-height, 5rem);
-  perspective: 600px;
+  perspective: 400px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
   font-family: var(--clock-font);
   font-weight: 700;
   font-size: var(--digit-font-size, 3.5rem);
@@ -43,6 +45,7 @@
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform-style: preserve-3d;
 }
 
 .half {
@@ -50,9 +53,14 @@
   left: 0;
   width: 100%;
   height: 50%;
+  background: var(--flap-bg);
+}
+
+.halfInner {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   backface-visibility: hidden;
-  background: var(--flap-bg);
 }
 
 .halfTop {
@@ -69,11 +77,10 @@
 
 .hinge {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 0.5px);
   left: 0;
   right: 0;
   height: 1px;
-  transform: translateY(-50%);
   background: var(--hinge-shadow);
   z-index: 4;
   pointer-events: none;
@@ -107,47 +114,45 @@
 
 .staticTop,
 .staticBottom {
-  z-index: 1;
+  transform: translateZ(0);
 }
 
 .flipTop,
 .flipBottom {
-  z-index: 2;
   transform-style: preserve-3d;
 }
 
 .flipTop {
-  z-index: 3;
-  transform: rotateX(0deg);
+  transform: translateZ(0) rotateX(0deg);
 }
 
 .flipBottom {
-  transform: rotateX(90deg);
+  transform: translateZ(0) rotateX(90deg);
 }
 
 .flipTopActive {
-  animation: flipTopDown 0.55s ease-in forwards;
+  animation: flipTopDown var(--flip-half-duration, 0.5s) ease-in forwards;
 }
 
 .flipBottomActive {
-  animation: flipBottomUp 0.55s ease-out forwards;
+  animation: flipBottomUp var(--flip-half-duration, 0.5s) ease-out var(--flip-half-duration, 0.5s) forwards;
 }
 
 @keyframes flipTopDown {
   from {
-    transform: rotateX(0deg);
+    transform: translateZ(0) rotateX(0deg);
   }
   to {
-    transform: rotateX(-90deg);
+    transform: translateZ(0) rotateX(-90deg);
   }
 }
 
 @keyframes flipBottomUp {
   from {
-    transform: rotateX(90deg);
+    transform: translateZ(0) rotateX(90deg);
   }
   to {
-    transform: rotateX(0deg);
+    transform: translateZ(0) rotateX(0deg);
   }
 }
 
